@@ -4,7 +4,7 @@ import TaskList from '../TaskList/TaskList'
 
 const EmployeeDash = () => {
     return (
-        <div className='p-10'>
+        <div className='p-8 bg-[#1c1c1c] h-screen'>
             <Header />
 
             <div className='flex text-white gap-5 mt-10 screen'>
