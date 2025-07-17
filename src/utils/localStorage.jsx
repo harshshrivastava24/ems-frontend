@@ -35,6 +35,16 @@ const employees = [
             {
                 "active": false,
                 "completed": false,
+                "newTask": true,
+                "failed": false,
+                "title": "Team meeting",
+                "description": "Discuss project updates and assign new tasks.",
+                "category": "Meetings",
+                "taskDate": "2025-05-15"
+            },
+            {
+                "active": false,
+                "completed": false,
                 "newTask": false,
                 "failed": true,
                 "title": "Client presentation",
