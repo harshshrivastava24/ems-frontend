@@ -4,18 +4,26 @@ import EmployeeDash from './components/DashBoard/EmployeeDash'
 import AdminDash from './components/DashBoard/AdminDash'
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from './context/AuthProvider'
-import { setLocalStorageData } from './utils/localStorage'
+
 
 
 const App = () => {
 
-  useEffect(() => {
-    setLocalStorageData()
-  })
-
   const [user, setUser] = useState('');
   const authData = useContext(AuthContext);
   const [loggedInUser, setLoggedInUser] = useState();
+
+  useEffect(() => {
+    // localStorage.clear()
+    // setLocalStorageData()
+    const isLoggedIn = localStorage.getItem('isLoggedIn')
+
+    if (isLoggedIn) {
+      const userData = JSON.parse(isLoggedIn)
+      setUser(userData.role)
+      setLoggedInUser(userData.data)
+    }
+  }, [])
 
   const handleLogin = (email, password) => {
     if (authData) {
@@ -23,7 +31,7 @@ const App = () => {
       if (employee) {
         setUser('employee')
         setLoggedInUser(employee);
-        localStorage.setItem('isLoggedIn', JSON.stringify({ role: 'employee' }));
+        localStorage.setItem('isLoggedIn', JSON.stringify({ role: 'employee', data: employee }));
       }
     }
     else if (email == 'admin@gmail.com' && password == '123') {

@@ -9,18 +9,18 @@ const TaskList = ({ data }) => {
     return (
         <div id='task-card' className='flex flex-nowrap overflow-x-auto items-center justify-start gap-5 w-full mt-10 py-4 text-white'>
             {
-                data.tasks.map((elem) => {
+                data.tasks.map((elem, idx) => {
                     if (elem.active) {
-                        return <AcceptTask />
+                        return <AcceptTask key={idx} />
                     }
                     if (elem.newTask) {
-                        return <NewTask />
+                        return <NewTask key={idx} />
                     }
                     if (elem.completed) {
-                        return <CompleteTask />
+                        return <CompleteTask key={idx} />
                     }
                     if (elem.failed) {
-                        return <FailedTask />
+                        return <FailedTask key={idx} />
                     }
                 })
             }
