@@ -7,12 +7,28 @@ const CreateTask = () => {
     const [assignTo, setAssignTo] = useState('');
     const [category, setCategory] = useState('');
 
-    const [task, setTask] = useState({});
+    const [newtask, setNewTask] = useState({});
 
     const submitHandler = (e) => {
         e.preventDefault();
 
-        setTask({ taskTitle, taskDescription, taskDate, category, active: false, newTask: true, completed: false, failed: false })
+        setNewTask({ taskTitle, taskDescription, taskDate, category, active: false, newTask: true, completed: false, failed: false })
+
+        const data = JSON.parse(localStorage.getItem('employees'));
+
+        data.forEach((elem) => {
+            if (assignTo == elem.firstName) {
+                elem.tasks.push(newtask)
+            }
+        })
+
+        localStorage.setItem('employees', data)
+
+        setTaskTitle('')
+        setTaskDescription('')
+        setTaskDate('')
+        setCategory('')
+        setAssignTo('')
     }
     return (
         <div className='text-white mt-7 p-5 bg-[#1c1c1c] rounded-lg'>
