@@ -29,20 +29,25 @@ const App = () => {
   const handleLogin = (email, password) => {
     if (authData) {
       const employee = authData.employees.find((e) => email == e.email && e.password == password)
+      const admin = authData.admin.find((e) => email == e.email && e.password == password)
       if (employee) {
         setUser('employee')
         setLoggedInUser(employee);
         localStorage.setItem('isLoggedIn', JSON.stringify({ role: 'employee', data: employee }));
       }
-    }
-    else if (email == 'admin@gmail.com' && password == '123') {
-      setUser('admin');
-      localStorage.setItem('isLoggedIn', JSON.stringify({ role: 'admin' }));
 
+      else if (admin) {
+        setUser('admin');
+        setLoggedInUser(admin)
+        localStorage.setItem('isLoggedIn', JSON.stringify({ role: 'admin', data: admin }));
+
+      }
+      else {
+        alert('Invalid Credentials');
+      }
     }
-    else {
-      alert('Invalid Credentials');
-    }
+
+
   }
 
 
