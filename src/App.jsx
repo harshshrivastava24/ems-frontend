@@ -4,6 +4,7 @@ import EmployeeDash from './components/DashBoard/EmployeeDash'
 import AdminDash from './components/DashBoard/AdminDash'
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from './context/AuthProvider'
+// import { setLocalStorageData } from './utils/localStorage'
 
 
 
@@ -49,8 +50,8 @@ const App = () => {
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ''}
-      {user == 'admin' ? <AdminDash /> : ''}
-      {user == 'employee' ? <EmployeeDash data={loggedInUser} /> : ''}
+      {user == 'admin' ? <AdminDash changeUser={setUser} /> : ''}
+      {user == 'employee' ? <EmployeeDash changeUser={setUser} data={loggedInUser} /> : ''}
     </>
   )
 }
